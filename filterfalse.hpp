@@ -21,7 +21,7 @@ namespace itertools{
             start(it), end(it2), fun(f){
              //go through the parameters start->end
                 while (start != end && fun(*start))
-                   start ++;
+                   ++start;
             }
             iterator(const iterator& other) = default;
 
@@ -47,10 +47,9 @@ namespace itertools{
                 return *this;
             }
             iterator operator ++(int){
-                iterator tmp = *this;
+                iterator temp = *this;
                 ++(*this);
-                //maybe ++(*this)
-                return tmp;
+                return temp;
             }
             value_type operator *(){
                 return *start;
@@ -61,7 +60,7 @@ namespace itertools{
             return iterator(con.begin(), con.end(), fun);
         }
         iterator end(){
-            return iterator(con.begin(), con.end(), fun);
+            return iterator(con.end(), con.end(), fun);
         }
     };
 }

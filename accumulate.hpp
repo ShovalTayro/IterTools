@@ -19,14 +19,16 @@ namespace itertools{
 
         class iterator{
             //set the type by the firs argument
-            decltype(*(con.begin())) value;
+            typename CONTAINER::value_type value;
             //2 arguments for first and last variables we got 
             typename CONTAINER::iterator _start;
             typename CONTAINER::iterator _end;
             FUNCTION fun;
         public:
             explicit iterator(typename CONTAINER::iterator iter, typename CONTAINER::iterator end, FUNCTION func):
-             _start(iter), _end(end), fun(func), value(*iter){};
+             _start(iter), _end(end), fun(func){
+                 if(_start != _end) value = *iter;
+             };
             iterator(const iterator& a) = default;
             iterator& operator=(const iterator& a){
                 if (this != &a) {
